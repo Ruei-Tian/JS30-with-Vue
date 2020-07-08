@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="keys">
+      <div 
+        class="key" 
+        v-for="audio in audioSource"
+        :class="{'playing': ifExist(audio.key) !== -1}"
+        :key="audio.key"
+        >
+          <span>{{ audio.key }}</span>
+          <div class="sound">{{ audio.soundName }}</div>
+          <audio :src="audio.soundSrc" :ref="audio.key"></audio>
+      </div>
+    </div>
+  </div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+<script>
+  let data = {
+    audioSource: [
+      {
+        keyCode: 65,
+        key:'a',
+        soundName: 'clap',
+        soundSrc: './sounds/clap.wav', 
+      },
+      {
+        keyCode: 83,
+        key:'s',
+        soundName: 'hihat',
+        soundSrc: './sounds/hihat.wav', 
+      },
+      {
+        keyCode: 68,
+        key:'d',
+        soundName: 'kick',
+        soundSrc: './sounds/kick.wav', 
+      },
+      {
+        keyCode: 70,
+        key:'f',
+        soundName: 'openhat',
+        soundSrc: './sounds/openhat.wav', 
+      },
+      {
+        keyCode: 71,
+        key:'g',
+        soundName: 'boom',
+        soundSrc: './sounds/boom.wav', 
+      },
+      {
+        keyCode: 72,
+        key:'h',
+        soundName: 'ride',
+        soundSrc: './sounds/ride.wav', 
+      },
+      {
+        keyCode: 74,
+        key:'j',
+        soundName: 'snare',
+        soundSrc: './sounds/snare.wav', 
+      },
+      {
+        keyCode: 75,
+        key:'k',
+        soundName: 'tom',
+        soundSrc: './sounds/tom.wav', 
+      },
+      {
+        keyCode: 76,
+        key:'l',
+        soundName: 'tink',
+        soundSrc: './sounds/tink.wav', 
+      },
+    ],
+    playingKey: []
+  }
+
+  let vm = new Vue({
+    el: '#app',
+    data,
+    mounted() {
+      window.addEventListener('keydown', (e) => this.keydown(e));
+    },
+    beforeDestroy() {
+      window.removeEventListener('keydown', (e) => this.keydown(e));
+    },
+    methods: {
+      keydown(e) {
+        this.playingKey.push(e.key);
+
+        if(!this.$refs[e.key]) return;
+        this.$refs[e.key][0].currentTime = 0;
+        this.$refs[e.key][0].play();
+        
+        window.setTimeout(() => this.playingKey = [], 200)
+      },
+      ifExist(key) {
+        return this.playingKey.findIndex((item) => item === key);
+      }
+    }
+  })
+
+</script>
+
+
+</body>
+</html>

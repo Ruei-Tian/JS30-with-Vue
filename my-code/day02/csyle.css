@@ -1,0 +1,44 @@
+.clock-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: bold;
+}
+.clock-number.clock-number-1 {
+  transform: translate(calc(90px - 50%), calc(-90px * 1.7320508076 - 50%));
+}
+.clock-number.clock-number-2 {
+  transform: translate(calc(90px * 1.7320508076 - 50%), calc(-90px - 50%));
+}
+.clock-number.clock-number-3 {
+  transform: translate(calc(180px - 50%), calc(-50%));
+}
+.clock-number.clock-number-4 {
+  transform: translate(calc(90px * 1.7320508076 - 50%), calc(90px - 50%));
+}
+.clock-number.clock-number-5 {
+  transform: translate(calc(90px - 50%), calc((90px * 1.7320508076 - 50%)));
+}
+.clock-number.clock-number-6 {
+  transform: translate(0, calc(180px - 50%));
+}
+.clock-number.clock-number-7 {
+  transform: translate(calc(-90px - 50%), calc(90px * 1.7320508076 - 50%));
+}
+.clock-number.clock-number-8 {
+  transform: translate(calc(-90px * 1.7320508076 - 50%), calc(90px - 50%));
+}
+.clock-number.clock-number-9 {
+  transform: translate(calc(-180px - 50%), -50%);
+}
+.clock-number.clock-number-10 {
+  transform: translate(calc(-90px * 1.7320508076 - 50%), calc(-90px - 50%));
+}
+.clock-number.clock-number-11 {
+  transform: translate(calc(-90px - 50%), calc((-90px * 1.7320508076) - 50%));
+}
+.clock-number.clock-number-12 {
+  transform: translate(-50%, calc(-180px - 50%));
+}
+
+/*# sourceMappingURL=csyle.css.map */
